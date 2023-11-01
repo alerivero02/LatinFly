@@ -6,7 +6,7 @@ import { body, param, query, validationResult } from "express-validator";
 export const detallevueloRouter = express.Router();
 
 //traer el detalle de vuelo por el id
-//http://localhost:3000/detallevuelo/1
+//http://localhost:3000/detallevuelo/1 utilizar en el thunderClient
 
 detallevueloRouter.get("/:idDetalle", param("id").isInt({ min: 1 }), async (req, res) => {
   const validacion = validationResult(req);
