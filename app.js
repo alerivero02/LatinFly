@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import { paisesRouter } from "./paises.js";
 import { avionRouter } from "./avion.js";
+import {boletoRouter} from "./boleto.js"
+import { vueloRouter } from "./vuelo.js";
 
 
 // Creo aplicacion express
@@ -11,6 +13,8 @@ app.use(express.json());
 app.use(cors());
 app.use("/paises", paisesRouter);
 app.use("/avion",avionRouter)
+app.use("/boleto", boletoRouter)
+app.use("/vuelo", vueloRouter)
 
 // Registrar metodo GET en ruta raiz ('/')
 app.get("/", (req, res) => {
