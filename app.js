@@ -8,7 +8,12 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+<<<<<<< Updated upstream
 app.use("/pasajero", pasajeroRouter);
+=======
+
+app.use("/paises", paisesRouter); 
+>>>>>>> Stashed changes
 
 
 // Registrar metodo GET en ruta raiz ('/')
