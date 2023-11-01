@@ -42,7 +42,7 @@ pasajeroRouter.post(      //En body, se indica el campo, luego el tipo de dato, 
 
 
 
-/* Como se agrega,  POST 
+/* Como se agrega, POST 
 -Body
 
 {

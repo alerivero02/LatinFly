@@ -7,7 +7,7 @@ import { vueloRouter } from "./vuelo.js";
 import { pasajeroRouter } from "./pasajero.js";
 
 
-// Creo aplicacion express
+// Creo aplicacion  express
 const app = express();
 
 app.use(express.json());
