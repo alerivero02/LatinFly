@@ -12,7 +12,7 @@ pasajeroRouter.get("/", async (req, res) => {
 
 
 //POST/pasajero
-pasajeroRouter.post(      //En body, se indica el campo, luego el tipo de dato, y al ultimo la longitud
+pasajeroRouter.post(      //En body, se indica el campo, luego el tipo de dato, y al ultimo la longitud.
     "/",
     body("nombre").isString().isLength({ min: 1, max: 50 }),
     body("documento").isString().isLength({ min: 1, max: 50 }),
