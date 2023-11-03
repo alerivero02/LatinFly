@@ -6,6 +6,7 @@ import { avionRouter } from "./avion.js";
 import {boletoRouter} from "./boleto.js"
 import { vueloRouter } from "./vuelo.js";
 import { detallevueloRouter } from "./detalle.js";
+import { empleadoRouter } from "./empleado.js";
 import { authConfig, authRouter } from "./auth.js";
 
 
@@ -24,6 +25,7 @@ app.use("/avion",avionRouter);
 app.use("/boleto", boletoRouter);
 app.use("/vuelo", vueloRouter);
 app.use("/detallevuelo", detallevueloRouter);
+app.use("/empleado", empleadoRouter)
 
 // Registrar metodo GET en ruta raiz ('/')
 app.get("/", (req, res) => {
