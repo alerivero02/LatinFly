@@ -1,6 +1,6 @@
 import express from "express";
 import { db } from "./db.js";
-import { body, param, query, validationResult } from "express-validator";
+import { body, param, validationResult } from "express-validator";
 
 //GET/empleado
 export const empleadoRouter = express.Router();
@@ -16,7 +16,7 @@ empleadoRouter.post(      //En body, se indica el campo, luego el tipo de dato, 
     "/",
     body("nombre").isString().isLength({ min: 1, max: 50 }),
     body("documento").isString().isLength({ min: 1, max: 50 }),
-    body("telefono").isInt().isLength({ min: 1, max: 11 }),
+    body("telefono").isString().isLength({ min: 1, max: 20 }),
     body("correo").isString().isLength({ min: 1, max: 50 }),
     body("direccion").isString().isLength({ min: 1, max: 50 }),
     body("direccion").isString().isLength({ min: 1, max: 50 }),
@@ -41,7 +41,7 @@ empleadoRouter.post(      //En body, se indica el campo, luego el tipo de dato, 
       const { nombre, documento, telefono,  correo, direccion, usuario, contraseña, idEmpleado  } = req.body;
       const contraseñaHashed = await bcrypt.hash(contraseña, 8);   //se crea una constante con los parametros de la tabla
       const [rows] = await db.execute(   //se agrega el empleado a la fila
-        "INSERT INTO empleado (nombre, documento, telefono,  correo, direccion, idEmpleado) VALUES (:nombre, :documento, :telefono, : :correo, :direccion, :usuario, :contraseña, :idEmpleado)",  
+        "INSERT INTO empleado (nombre, documento, telefono,  correo, direccion, idEmpleado,usuario,contraseña) VALUES(:nombre, :documento, :telefono, : :correo, :direccion, :usuario, :contraseña, :idEmpleado)",  
         { nombre, documento, telefono,  correo, direccion, usuario, contraseña: contraseñaHashed , idEmpleado }
       );
       res.status(201).send({ nombre, documento, telefono,  correo, direccion, usuario, contraseña, id: rows.insertId, idEmpleado});
