@@ -21,7 +21,7 @@ authConfig();
 
 app.use("/auth", authRouter);
 app.use("/paises", paisesRouter);
-app.use("/avion",avionRouter);
+app.use("/aviones",avionRouter);
 app.use("/boleto", boletoRouter);
 app.use("/vuelo", vueloRouter);
 app.use("/detallevuelo", detallevueloRouter);

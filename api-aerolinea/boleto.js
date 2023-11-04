@@ -6,7 +6,8 @@ export const boletoRouter = express.Router();
 //Se busca el id del boleto
 //http://localhost:3000/boleto/:id
 boletoRouter.get("/:id", async (req, res) => {
-  const [rows, fields] = await db.execute("SELECT idBoleto FROM boleto");
+  const id= req.params("id");
+  const [rows, fields] = await db.execute("SELECT * FROM boleto WHERE idBoleto=:id",{id:id});
   res.send(rows);
 });
 

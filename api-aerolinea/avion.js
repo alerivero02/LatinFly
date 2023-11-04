@@ -6,16 +6,8 @@ import { db } from "./db.js";
 
 export const avionRouter = express.Router();
 
-avionRouter.get("/nombre", async (req, res) => {
-  const [rows, fields] = await db.execute("SELECT nombre FROM avion");
+avionRouter.get("/", async (req, res) => {
+  const [rows, fields] = await db.execute("SELECT nombre,capacidad FROM avion");
   res.send(rows);
 });
 
-
-//http://localhost:3000/avion/capacidad
-
-avionRouter.get("/capacidad", async (req, res) => {
-    const [rows, fields] = await db.execute("SELECT capacidad FROM avion");
-    res.send(rows);
-  });
-  
