@@ -3,12 +3,12 @@ import { db } from "./db.js";
 import { body, param, query, validationResult } from "express-validator";
 // instalar express-validator para utilizar las validaciones
 
-export const detallevueloRouter = express.Router();
+export const detallesvuelosRouter = express.Router();
 
 //traer el detalle de vuelo por el id
 //http://localhost:3000/detallevuelo/1 utilizar en el thunderClient
 
-detallevueloRouter.get("/:idDetalle", param("id").isInt({ min: 1 }), async (req, res) => {
+detallesvuelosRouter.get("/:idDetalle", param("id").isInt({ min: 1 }), async (req, res) => {
   const validacion = validationResult(req);
   if (!validacion.isEmpty()) {
     res.status(400).send({ errors: validacion.array() });
@@ -16,7 +16,7 @@ detallevueloRouter.get("/:idDetalle", param("id").isInt({ min: 1 }), async (req,
   }
   const { id } = req.params;
   const [rows, fields] = await db.execute(
-    "SELECT * FROM detallevuelo WHERE id = :id",
+    "SELECT * FROM detallesvuelos WHERE id = :id",
     { id }
   );
   if (rows.length > 0) {

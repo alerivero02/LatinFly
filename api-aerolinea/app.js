@@ -2,11 +2,11 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { paisesRouter } from "./paises.js";
-import { avionRouter } from "./avion.js";
-import {boletoRouter} from "./boleto.js"
-import { vueloRouter } from "./vuelo.js";
-import { detallevueloRouter } from "./detalle.js";
-import { empleadoRouter } from "./empleado.js";
+import { avionesRouter } from "./aviones.js";
+import {boletosRouter} from "./boletos.js"
+import { vuelosRouter } from "./vuelos.js";
+import { detallesvuelosRouter } from "./detalle.js";
+import { empleadosRouter } from "./empleados.js";
 import { authConfig, authRouter } from "./auth.js";
 
 
@@ -21,11 +21,11 @@ authConfig();
 
 app.use("/auth", authRouter);
 app.use("/paises", paisesRouter);
-app.use("/aviones",avionRouter);
-app.use("/boleto", boletoRouter);
-app.use("/vuelo", vueloRouter);
-app.use("/detallevuelo", detallevueloRouter);
-app.use("/empleado", empleadoRouter)
+app.use("/aviones",avionesRouter);
+app.use("/boleto", boletosRouter);
+app.use("/vuelo", vuelosRouter);
+app.use("/detallevuelo", detallesvuelosRouter);
+app.use("/empleado", empleadosRouter)
 
 // Registrar metodo GET en ruta raiz ('/')
 app.get("/", (req, res) => {
