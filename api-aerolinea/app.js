@@ -23,11 +23,11 @@ authConfig();
 app.use("/auth", authRouter);
 app.use("/paises", paisesRouter);
 app.use("/aviones",avionesRouter);
-app.use("/boleto", boletosRouter);
-app.use("/vuelo", vuelosRouter);
-app.use("/detallevuelo", detallesvuelosRouter);
-app.use("/empleado", empleadosRouter)
-app.use("/pasajero", pasajerosRouter)
+app.use("/boletos", boletosRouter);
+app.use("/vuelos", vuelosRouter);
+app.use("/detallesvuelos", detallesvuelosRouter);
+app.use("/empleados", empleadosRouter)
+app.use("/pasajeros", pasajerosRouter)
 
 // Registrar metodo GET en ruta raiz ('/')
 app.get("/", (req, res) => {
