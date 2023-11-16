@@ -68,3 +68,56 @@ empleadosRouter.delete("/:id", param("id").isInt({ min: 1 }), async (req, res) =
   await db.execute("DELETE FROM empleados WHERE idEmpleado = :id", { id:id });
   res.send("ok");
 });
+
+//Editar
+empleadosRouter.put("/:id",
+  param("id").isInt({ min: 1 }),
+  body("usuario").isAlphanumeric().isLength({ min: 1, max: 25 }),
+  body("password").isStrongPassword({
+    minLength: 8,
+    minLowercase: 1,
+    minUppercase: 1,
+    minNumbers: 1,
+    minSymbols: 0,
+  }),
+
+  async (req, res) => {
+    const validacion = validationResult(req);
+    if (!validacion.isEmpty()) {
+      res.status(400).send({ errors: validacion.array() });
+      return;
+    }
+
+    const { id } = req.params;
+    const { usuario, password, nombre, apellido, documento, telefono, correo, direccion } = req.body;
+
+    // Comprueba si el empleado existe
+    const [existingEmployee] = await db.execute("SELECT * FROM empleados WHERE idEmpleado = :id", { id });
+    if (existingEmployee.length === 0) {
+      res.status(404).send({ mensaje: "Empleado no encontrado" });
+      return;
+    }
+
+    // Actualiza el empleado
+    const passwordHashed = await bcrypt.hash(password, 8);
+    await db.execute(
+      "UPDATE empleados SET Usuario = :usuario, Password = :password, Nombre = :nombre, Apellido = :apellido, Documento = :documento, Telefono = :telefono, Correo = :correo, Direccion = :direccion WHERE idEmpleado = :id",
+      { id, usuario, password: passwordHashed, nombre, apellido, documento, telefono, correo, direccion }
+    );
+
+    res.send({ mensaje: "Empleado actualizado correctamente" });
+  }
+);
+
+/* Como se edita, PUT 
+-Body
+
+{
+  "nombre": "edit",
+  "documento": "edit",
+  "telefono": "edit",
+  "correo": "edit",
+  "direccion": "edit" ... etc
+}
+
+*/

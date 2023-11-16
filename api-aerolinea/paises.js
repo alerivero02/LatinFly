@@ -8,3 +8,4 @@ paisesRouter.get("/", async (req, res) => {
   const [rows, fields] = await db.execute("SELECT * FROM paises");
   res.send(rows);
 });
+
