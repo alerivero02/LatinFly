@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+import { Link,useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 

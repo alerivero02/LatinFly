@@ -91,10 +91,6 @@ body {
     margin-bottom: 15px;
     margin-left: 40px;
   }
-  div{
-    align-content: center;
-    margin-bottom: 10px;
-  }
   
   section div:hover {
     transform: perspective(1000px) rotateY(0deg);
