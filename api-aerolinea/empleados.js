@@ -114,10 +114,13 @@ empleadosRouter.put("/:id",
 
 {
   "nombre": "edit",
+  "apellido":"",
   "documento": "edit",
   "telefono": "edit",
   "correo": "edit",
-  "direccion": "edit" ... etc
+  "direccion": "edit",
+  "usuario":"",
+  "password":""
 }
 
 */
