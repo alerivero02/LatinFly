@@ -1,3 +1,10 @@
+
 export const HomePage = () => {
-  return <p>Pagina principal...</p>;
+  return (
+    <>
+      <body>
+      <h1>BIENVENIDO A LATINFLY</h1>
+      </body>
+      </>
+  );
 };

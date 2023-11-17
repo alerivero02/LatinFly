@@ -14,6 +14,7 @@ export const AuthProvider = ({ children }) => {
       });
       if (response.data.token) {
         setSesion(response.data);
+        localStorage.setItem("token",response.data.token)
         callback();
       }
     } catch (e) {
@@ -23,7 +24,9 @@ export const AuthProvider = ({ children }) => {
 
   const logout = (callback) => {
     setSesion(null);
+    localStorage.removeItem("token")
     callback();
+    
   };
 
   const value = { sesion, login, logout };

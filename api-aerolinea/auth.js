@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 import { body, validationResult } from "express-validator";
 import { db } from "./db.js";
 
+// Configuración de Passport
 export function authConfig() {
   const jwtOptions = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -15,8 +16,8 @@ export function authConfig() {
   passport.use(
     new Strategy(jwtOptions, async (payload, next) => {
       const [rows, fields] = await db.execute(
-        "SELECT usuario FROM empleado WHERE usuario = :usuario",
-        { usuario: payload.usuario }
+        "SELECT idEmpleado, usuario FROM empleados WHERE usuario = ?",
+        [payload.usuario]
       );
       if (rows.length > 0) {
         next(null, rows[0]);
@@ -27,13 +28,15 @@ export function authConfig() {
   );
 }
 
+// Configuración del enrutador de autenticación
 export const authRouter = express
   .Router()
 
+  // Endpoint de inicio de sesión
   .post(
     "/login",
     body("usuario").isAlphanumeric().isLength({ min: 1, max: 25 }),
-    body("contraseña").isStrongPassword({
+    body("password").isStrongPassword({
       minLength: 8,
       minLowercase: 1,
       minUppercase: 1,
@@ -47,21 +50,22 @@ export const authRouter = express
         return;
       }
 
-      const { usuario, contraseña } = req.body;
+      const { usuario, password } = req.body;
 
-      // Obtengo cuenta de usuario
+      // Obtener cuenta de usuario
       const [rows, fields] = await db.execute(
-        "SELECT usuario, contraseña FROM empleado WHERE usuario = :usuario",
-        { usuario }
+        "SELECT idEmpleado, usuario, password FROM empleados WHERE usuario = ?",
+        [usuario]
       );
+
       if (rows.length === 0) {
         res.status(400).send("Usuario o contraseña inválida");
         return;
       }
 
       // Verificar contraseña
-      const contraseñaCompared = await bcrypt.compare(contraseña, rows[0].contraseña);
-      if (!contraseñaCompared) {
+      const passwordCompared = await bcrypt.compare(password, rows[0].password);
+      if (!passwordCompared) {
         res.status(400).send("Usuario o contraseña inválida");
         return;
       }
@@ -75,6 +79,7 @@ export const authRouter = express
     }
   )
 
+  // Endpoint para obtener el perfil del usuario autenticado
   .get(
     "/perfil",
     passport.authenticate("jwt", { session: false }),

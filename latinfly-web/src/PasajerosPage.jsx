@@ -1,17 +1,23 @@
-import React, { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+
 
 export const PasajerosPage = () => {
+
+  const [searchParams]=useSearchParams()
+  
+
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(null);
   const [pasajeros, setPasajeros] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/pasajeros`)
+      .get("http://localhost:3000/pasajeros")
       .then((response) => setPasajeros(response.data));
-  },{});
+      console.log(searchParams.get("id"));
+  },[]);
 
   const newPas = (e) => {
     setFormData({
@@ -66,13 +72,9 @@ export const PasajerosPage = () => {
         <label htmlFor="direccion">direccion:</label>
         <input name="direccion" type="text" onChange={newPas} required />
         <br/>
-        <Link to="/"  >
-            <button type="submit">Agregar Pasajero</button>
-        </Link>
+        <button type="submit">Agregar Pasajero</button>
       </form>
 
       {error && <p>Error: {error}</p>}
-    </>
-  );
-};
-
+      </>
+      );};
