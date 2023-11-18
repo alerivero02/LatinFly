@@ -28,7 +28,7 @@ export const VuelosPage = () => {
             {" Pais de origen: "}{vuelo.Pais_Origen}<br/>{" Pais de Destino: "}{vuelo.Pais_Destino}<br/>{"Fecha: "}{ (new Date (vuelo.fecha)).toLocaleDateString() }<br/>{"Hora de salida: "}{vuelo.HoraSalida}
              <br/> 
              <Link  to={"/pasajeros?id="+vuelo.idVuelo}>
-                <button>Comprar</button>
+                <button>Seleccionar</button>
              </Link>
             <hr/>
           </li>
