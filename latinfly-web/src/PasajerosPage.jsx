@@ -72,9 +72,7 @@ export const PasajerosPage = () => {
         <label htmlFor="direccion">direccion:</label>
         <input name="direccion" type="text" onChange={newPas} required />
         <br/>
-        <Link to="/"  >
-            <button type="submit">Agregar Pasajero</button>
-        </Link>
+        <button type="submit">Agregar Pasajero</button>
       </form>
 
       {error && <p>Error: {error}</p>}
