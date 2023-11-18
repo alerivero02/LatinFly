@@ -30,8 +30,9 @@ pasajerosRouter.post(      //En body, se indica el campo, luego el tipo de dato,
         return;
       }
 
-      const { nombre, apellido, documento, telefono, nacionalidad, correo, direccion  } = req.body;   //se crea una constante con los parametros de la tabla
+      const { nombre, apellido, documento, telefono, nacionalidad, correo, direccion  } = req.body;   //se crea una constante para ingresar los datos
       const [rows] = await db.execute(   //se agrega el pasajeros a la fila
+      //Se le insertan los valores a los campos indicados
         "INSERT INTO pasajeros (Nombre, Apellido, Documento, Telefono, Nacionalidad, Correo, Direccion) VALUES (:nombre, :apellido, :documento, :telefono, :nacionalidad, :correo, :direccion)",  
         { nombre:nombre, apellido:apellido, documento:documento, telefono:telefono, nacionalidad:nacionalidad, correo:correo, direccion:direccion   }
       );
@@ -41,6 +42,7 @@ pasajerosRouter.post(      //En body, se indica el campo, luego el tipo de dato,
 
 
 //Editar 
+//Se indican los tipos de datos y los datos 
 pasajerosRouter.put("/:id",
 body("nombre").isString().isLength({ min: 1, max: 50 }),
 body("apellido").isString().isLength({ min: 1, max: 50 }),
@@ -57,7 +59,7 @@ body("direccion").isString().isLength({ min: 1, max: 50 }),
       return;
     }
 
-    const { id } = req.params;
+    const { id } = req.params;  //Se crea la constante id en donde se guarda el id indicado en la ruta para buscar en la base de datos
     const { nombre, apellido, documento, telefono, nacionalidad, correo, direccion  } = req.body;
 
     // Comprueba si el empleado existe
@@ -69,6 +71,7 @@ body("direccion").isString().isLength({ min: 1, max: 50 }),
 
     // Actualiza el empleado
     await db.execute(
+      //Actualiza los datos anteriores por los datos ingresados
       "UPDATE pasajeros SET Nombre = :nombre, Apellido = :apellido, Documento = :documento, Telefono = :telefono, Nacionalidad= :nacionalidad, Correo = :correo, Direccion = :direccion WHERE idPasajero = :id",
       { id, nombre, apellido, documento, telefono,nacionalidad, correo, direccion }
     );
@@ -77,11 +80,11 @@ body("direccion").isString().isLength({ min: 1, max: 50 }),
 );
 
 
-/* Como se agrega, POST 
+/* Estructura para el POST y el PUT
 -Body
 {
   "nombre": ".........",
-  "apellido":""
+  "apellido":"...........",
   "documento": "..........",
   "telefono": "..........",
   "nacionalidad": "........",

@@ -1,7 +1,9 @@
+//Se realizan las importaciones
+
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import { paisesRouter } from "./paises.js";
+import { paisesRouter } from "./paises.js";     
 import { avionesRouter } from "./aviones.js";
 import {boletosRouter} from "./boletos.js"
 import { vuelosRouter } from "./vuelos.js";
