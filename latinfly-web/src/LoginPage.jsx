@@ -31,6 +31,12 @@ export const LoginPage = () => {
     <>
       <form onSubmit={onSubmit}>
         <div>
+          <br />
+          <br />
+          <br />
+          
+          <h1>Iniciar sesion</h1>
+          <br />
         <label htmlFor="usuario">Usuario:</label><br />
         <input name="usuario" type="text" /><br />
         <label htmlFor="password">Contraseña:</label><br />

@@ -1,5 +1,5 @@
 import { useSearchParams, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 export const PasajerosPage = () => {
@@ -8,6 +8,8 @@ export const PasajerosPage = () => {
   const [error, setError] = useState(null);
   const [pasajeros, setPasajeros] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const nombreRef = useRef(null);
+  const formRef = useRef(null); // Ref para el formulario
 
   useEffect(() => {
     axios
@@ -33,8 +35,12 @@ export const PasajerosPage = () => {
         "http://localhost:3000/pasajeros",
         formData
       );
-      console.log(response.data); // Puedes manejar la respuesta según tus necesidades
-      alert("Pasajero Cargado con exito");
+      console.log(response.data);
+      alert("Pasajero Cargado con éxito");
+      setFormData({});
+      nombreRef.current.focus();
+      // Desplazarse hacia abajo hasta el formulario
+      formRef.current.scrollIntoView({ behavior: "smooth" });
     } catch (error) {
       setError(error.message);
       console.error("Error al enviar la solicitud:", error);
@@ -56,21 +62,27 @@ export const PasajerosPage = () => {
         placeholder="Buscar pasajero"
         onChange={(e) => setSearchTerm(e.target.value)}
       />
+      <button onClick={() => {
+        nombreRef.current.focus();
+        
+        formRef.current.scrollIntoView({ behavior: "smooth" });
+      }}>Nuevo Pasajero</button>
       <ul>
         {filteredPasajeros.map((pasajero) => (
           <li key={pasajero.idPasajero}>
-            {pasajero.Nombre}, {pasajero.Apellido}, {pasajero.Documento}
-            <Link to={idV.get("id") + "/boleto?id="+pasajero.idPasajero}>
-                <input type="radio"/>
-             </Link>
+            {pasajero.Nombre}, {pasajero.Apellido} - {pasajero.Documento}
+            <Link to={`/pasaje/${pasajero.idPasajero}`}>
+              <input type="radio" />
+            </Link>
           </li>
         ))}
       </ul>
+      
 
-      <h3>Ingrese Datos del Pasajero</h3>
-      <form onSubmit={onSubmit}>
+      <h3>Ingresa los datos</h3>
+      <form onSubmit={onSubmit} ref={formRef}>
         <label htmlFor="nombre">Nombre:</label>
-        <input name="nombre" type="text" onChange={newPas} required />
+        <input name="nombre" type="text" onChange={newPas} ref={nombreRef} required />
         <br/>
         <label htmlFor="apellido">Apellido:</label>
         <input name="apellido" type="text" onChange={newPas} required />

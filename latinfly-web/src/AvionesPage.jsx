@@ -9,7 +9,7 @@ export const AvionesPage = () => {
     axios
       .get(`http://localhost:3000/aviones`)
       .then((response) => setAviones(response.data));
-  },{});
+  },[]);
   
 
   return (

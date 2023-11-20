@@ -9,63 +9,72 @@ header {
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    transition: background 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: background 0.3s ease;
+  text-align: center; /* Centra el contenido del body */
+}
 
-  }
+nav {
+  background-color: #663399;
+  color: #ffffff;
+  padding: 1em 2em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  max-height: 24px;
+}
 
-  nav {
-    background-color: #663399;
-    color: #ffffff;
-    padding: 1em 2em;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* Alinea verticalmente el contenido del nav */
-  }
-  
-  nav h1 {
-    margin: 0; /* Elimina el margen predeterminado del h1 */
-  }
-  
-  nav ul {
+nav ul {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center; /* Alinea verticalmente los elementos del ul */
+  justify-content: center; /* Centra horizontalmente los elementos del ul */
+}
+
+nav ul li {
+  margin-left: 15px;
+  padding-top: 0px;
+  justify-content: center;
+  list-style-type: none; /* Elimina el marcador de lista predeterminado */
+}
+
+nav ul li:first-child {
+  margin-left: 0;
+}
+
+
+nav ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 1em;
+  transition: color 0.3s ease;
+  justify-content: center;
+}
+
+nav ul li a:hover {
+  color: #2980b9;
+}
+  li{
     list-style-type: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-  
-  nav ul li {
-    margin-left: 15px;
-  }
-  
-  nav ul li:first-child {
-    margin-left: 0;
-  }
-  
-  nav ul li a {
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: bold;
-    padding: 1em;
-    transition: color 0.3s ease;
-  }
-  
-  nav ul li a:hover {
-    color: #2980b9;
   }
   
   
   
-  hr{margin-right: 500px;}
+  hr{
+    margin-right:  100px;
+    margin-left: 100px;
+  }
 
  
   
   main {
     max-width: 800px;
+    display: flex;
     margin: 20px auto;
     background-color: #fff;
     padding: 20px;
@@ -80,6 +89,9 @@ body {
   h2{
     margin-left: 20px;
   }
+  h6{
+    margin-left: 20px;
+  }
   
   /* Estilo del div dentro de las secciones */
   section div {
@@ -91,6 +103,7 @@ body {
     transition: transform 0.3s ease;
     margin-bottom: 15px;
     margin-left: 40px;
+    display: flex;
   }
   div{
     align-content: center;
@@ -142,6 +155,18 @@ body {
     transition: background-color 0.3s ease;
   }
 
+  button2 {
+    padding: 3px 7px;
+    background-color: rgb(227, 16, 26);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+
     button:hover{
         background-color: #2980b9;
     }
@@ -164,4 +189,12 @@ body {
 
     label{
       font-size: 14px;
+    }
+    select{
+      padding: 10px;
+      background-color: #e6dbf7;
+      border: 1px solid #d1bcf0; /* Borde del input */
+      border-radius: 5px; /* Radio de los bordes */
+      font-size: 14px;
+      transition: border-color 0.3s ease;
     }
