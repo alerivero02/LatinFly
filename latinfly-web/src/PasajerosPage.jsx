@@ -1,9 +1,9 @@
-import { useSearchParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 export const PasajerosPage = () => {
-  const [idV] = useSearchParams();
+  const {idBoleto} = useParams();
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(null);
   const [pasajeros, setPasajeros] = useState([]);
@@ -17,7 +17,6 @@ export const PasajerosPage = () => {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((response) => setPasajeros(response.data));
-    console.log(idV.get("id"));
   }, []);
 
   const newPas = (e) => {
@@ -71,7 +70,7 @@ export const PasajerosPage = () => {
         {filteredPasajeros.map((pasajero) => (
           <li key={pasajero.idPasajero}>
             {pasajero.Nombre}, {pasajero.Apellido} - {pasajero.Documento}
-            <Link to={`/pasaje/${pasajero.idPasajero}`}>
+            <Link to={`/pasaje/${idBoleto}/${pasajero.idPasajero}`}>
               <input type="radio" />
             </Link>
           </li>

@@ -4,6 +4,7 @@ import axios from "axios";
 
 export const BoletosPage = () => {
   const navigate = useNavigate();
+  
   const { idVuelo } = useParams();
   const [formData, setFormData] = useState({
     clase: "",
@@ -46,10 +47,9 @@ export const BoletosPage = () => {
       clase: claseSel,
       asiento: formData.asiento,
       });
-
-      console.log(response.data);
-      // alert("Compra exitosa!");
-      navigate('/pasajeros');
+      
+      let idBoleto= response.data.id
+      navigate(`/pasajeros/${idBoleto}`);
     } catch (error) {
       setError(error.message);
       console.error("Error al enviar la solicitud:", error);
