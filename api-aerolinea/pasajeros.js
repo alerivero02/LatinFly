@@ -10,6 +10,12 @@ pasajerosRouter.get("/", async (req, res) => {
   res.send(rows);
 });
 
+//Se trae el pasajero por ID
+pasajerosRouter.get("/:id", async (req, res) => {
+  const {id}= req.params; //Se crea la constante id en donde se guarda el id indicado en la ruta para buscar en la base de datos
+  const [rows, fields] = await db.execute("SELECT * FROM pasajeros WHERE idPasajero=:id",{id:id});  //Se trae toda la informacion de la tabla pasajeros segun el id indicado
+  res.send(rows);
+});
 
 //POST/pasajeros
 pasajerosRouter.post(      //En body, se indica el campo, luego el tipo de dato, y al ultimo la longitud.
