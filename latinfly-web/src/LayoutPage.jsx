@@ -16,12 +16,6 @@ export const LayoutPage = () => {
             <Link to="/vuelos">Vuelos</Link>
           </li>
           <li>
-            <Link to="/boletos/:idVuelo">Boletos</Link>
-          </li>
-          <li>
-            <Link to="/pasajeros/:idBoleto">Pasajeros</Link>
-          </li>
-          <li>
             <Link to="/aviones">Aviones</Link>
           </li>
           <AuthStatus />
