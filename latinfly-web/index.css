@@ -121,6 +121,18 @@ nav ul li a:hover {
     padding: 10px 20px;
     text-align: left;
  }
+ .div3{
+  background-color: #f4eefd;
+  align-content: center;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  display: inline-table;
+  border-color: #663399;
+  border-width: 2px;
+  border-radius: 20px;
+  padding: 10px 20px;
+  text-align: center;
+}
   .p2{
     color: #663399;
   }
