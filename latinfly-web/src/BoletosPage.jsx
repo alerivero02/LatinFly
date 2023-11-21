@@ -34,11 +34,9 @@ export const BoletosPage = () => {
     setFormData(selectedValue)
     setValor(selectedValue);
   };
-
+  //POST
   const onSubmit = async (event) => {
     event.preventDefault();
-    
-
     try {
       console.log("Datos enviados:", { idVuelo, valor, claseSel, asiento: formData.asiento });
     const response = await axios.post("http://localhost:3000/boletos", {

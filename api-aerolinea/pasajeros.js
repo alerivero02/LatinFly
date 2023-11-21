@@ -98,5 +98,3 @@ body("direccion").isString().isLength({ min: 1, max: 50 }),
   "direccion": "............."
 }
 */
-
-

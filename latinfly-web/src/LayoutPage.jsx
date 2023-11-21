@@ -19,7 +19,7 @@ export const LayoutPage = () => {
             <Link to="/boletos/:idVuelo">Boletos</Link>
           </li>
           <li>
-            <Link to="/pasajeros">Pasajeros</Link>
+            <Link to="/pasajeros/:idBoleto">Pasajeros</Link>
           </li>
           <li>
             <Link to="/aviones">Aviones</Link>

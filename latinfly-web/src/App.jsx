@@ -7,11 +7,7 @@ import { LoginPage } from "./LoginPage";
 import { RequiredAuth } from "./RequireAuth";
 import { BoletosPage } from "./BoletosPage";
 import { PasajePage } from "./PasajePage";
-
-
-
-
-
+import { SinRuta } from "./SinRuta";
 
 
 function App() {
@@ -25,8 +21,9 @@ function App() {
           <Route path="/vuelos"element={<RequiredAuth><VuelosPage /></RequiredAuth>}/>
           <Route path="/pasajeros/:idBoleto" element={<RequiredAuth><PasajerosPage/></RequiredAuth>}/>
           <Route path="/boletos/:idVuelo" element={<RequiredAuth><BoletosPage/></RequiredAuth>}/>
-          <Route path="/pasaje/:idBoleto/:idPasjero" element={<PasajePage/>}></Route>
+          <Route path="/pasaje/:idBoleto/:idPasajero" element={<PasajePage/>}/>
           <Route path="/aviones" element={<AvionesPage/>}/>
+          <Route path="*"element={<SinRuta/>}/>
         </Route>
         
           

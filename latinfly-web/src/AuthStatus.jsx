@@ -11,7 +11,7 @@ export const AuthStatus = () => {
 
   return (
     <>
-      <h6>{sesion.usuario} <button2 onClick={() => logout(() => navigate("/"))}>Salir</button2></h6>
+      <h6>{sesion.usuario} <button className="button2" onClick={() => logout(() => navigate("/"))}>Salir</button></h6>
       
     </>
   );

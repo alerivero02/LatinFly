@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
+
 export const PasajerosPage = () => {
   const {idBoleto} = useParams();
   const [formData, setFormData] = useState({});
@@ -9,7 +10,7 @@ export const PasajerosPage = () => {
   const [pasajeros, setPasajeros] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const nombreRef = useRef(null);
-  const formRef = useRef(null); // Ref para el formulario
+  const formRef = useRef(null);
 
   useEffect(() => {
     axios
@@ -55,6 +56,7 @@ export const PasajerosPage = () => {
 
   return (
     <>
+      
       <h3>Seleccione un pasajero:</h3>
       <input
         type="text"
