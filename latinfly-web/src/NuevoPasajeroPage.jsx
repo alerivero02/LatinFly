@@ -37,10 +37,11 @@ export const AgregarPasajero = () => {
 
  return (
     <>  
-      <h3>¿Primera vez que viaja con nosotros?</h3>
-      <h3>Ingresa los datos</h3>
+      <h2>¿Primera vez que viaja con nosotros?</h2>
+      
       <div>
             <form className="formP"onSubmit={onSubmit} ref={formRef}>
+                <h3>Ingresa los datos</h3>
                 <label className="labelP" htmlFor="nombre">Nombre:</label><input name="nombre" type="text" onChange={newPas} ref={nombreRef} required />
                 <br/>
                 <label className="labelP" htmlFor="apellido">Apellido:</label>
