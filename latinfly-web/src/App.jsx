@@ -8,6 +8,7 @@ import { RequiredAuth } from "./RequireAuth";
 import { BoletosPage } from "./BoletosPage";
 import { PasajePage } from "./PasajePage";
 import { SinRuta } from "./SinRuta";
+import {AgregarPasajero} from "./NuevoPasajeroPage";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/pasaje/:idBoleto/:idPasajero" element={<PasajePage/>}/>
           <Route path="/aviones" element={<AvionesPage/>}/>
           <Route path="*"element={<SinRuta/>}/>
+          <Route path="/nuevo-pasajero" element={<RequiredAuth><AgregarPasajero/></RequiredAuth>}/>
         </Route>
         
           

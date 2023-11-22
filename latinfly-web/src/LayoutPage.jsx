@@ -13,6 +13,9 @@ export const LayoutPage = () => {
         <img src="icono.ico"width={100} onClick={()=> navigate("/")}/>
         <ul>
           <li>
+            <Link to="/nuevo-pasajero">Nuevo Pasajero</Link>
+          </li>
+          <li>
             <Link to="/vuelos">Vuelos</Link>
           </li>
           <li>

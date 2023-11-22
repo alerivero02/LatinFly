@@ -110,7 +110,7 @@ nav ul li a:hover {
     margin-bottom: 10px;
   }
   .div2{
-    background-color: #f4eefd;
+    background-color: #f0f0ff;
     align-content: center;
     margin-top: 30px;
     margin-bottom: 10px;
@@ -121,6 +121,18 @@ nav ul li a:hover {
     padding: 10px 20px;
     text-align: left;
  }
+ .div3{
+  background-color: #f0f0ff;
+  align-content: center;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  display: inline-table;
+  border-color: #663399;
+  border-width: 2px;
+  border-radius: 20px;
+  padding: 10px 20px;
+  text-align: center;
+}
   .p2{
     color: #663399;
   }
@@ -167,6 +179,7 @@ nav ul li a:hover {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
+    margin-bottom: 10px;
   }
 
   .button2 {
@@ -178,6 +191,7 @@ nav ul li a:hover {
     cursor: pointer;
     font-size: 10px;
     transition: background-color 0.3s ease;
+    margin-bottom: 0;
   }
   
 
@@ -212,3 +226,32 @@ nav ul li a:hover {
       font-size: 14px;
       transition: border-color 0.3s ease;
     }
+
+
+    /* Formularios */
+   
+.formP {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  padding: 10px 10px;
+  font-size: 14;
+  background-color: #f0f0ff; 
+  color: black;
+  border-radius: 8px;
+  
+}
+.labelP {
+  display: inline-block;
+  width: 120px;
+  margin-bottom: 0px;
+  color: #000000;
+}
+input{
+  margin-bottom: 10;
+}
+
+.success-message {
+  color: #008000;
+  margin-top: 5px;
+}

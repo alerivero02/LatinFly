@@ -39,7 +39,7 @@ export const PasajePage = () => {
         console.log(error);
       });
     alert("¡¡¡Compra exitosa!!!")
-    navigate("/vuelos");
+    navigate("/nuevo-pasajero");
  };
 
  return (
