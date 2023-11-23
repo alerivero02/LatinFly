@@ -14,7 +14,7 @@ import {AgregarPasajero} from "./NuevoPasajeroPage";
 function App() {
   
 
-  return (
+  return (  //Se indica como se utilizan las rutas en el navegador con sus componentes
     <>
       <Routes>
         <Route path="/" element={<LayoutPage/>}>

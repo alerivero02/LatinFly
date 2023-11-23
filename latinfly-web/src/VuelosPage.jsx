@@ -10,18 +10,18 @@ export const VuelosPage = () => {
   useEffect(() => {
     axios
       .get(`http://localhost:3000/vuelos`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },  //Se trae el token 
       })
       .then((response) => setVuelos(response.data));
   }, []);
 
-  const handleFilterChange = (event) => {
+  const handleFilterChange = (event) => { 
     setFilter(event.target.value);
   };
 
-  const filteredVuelos = vuelos.filter(
+  const filteredVuelos = vuelos.filter(   //Se crea el filtro para buscar los vuelos
     (vuelo) =>
-      vuelo.Pais_Destino.toLowerCase().includes(filter.toLowerCase())
+      vuelo.Pais_Destino.toLowerCase().includes(filter.toLowerCase()) 
   );
 
   return (
@@ -41,10 +41,12 @@ export const VuelosPage = () => {
       </div>
       <ul>
         {filteredVuelos.map((vuelo) => (
-          <li key={vuelo.idVuelo}>
+          //Se pasa como key el idVuelo
+           <li key={vuelo.idVuelo}>  
+           {/* Se muestran los datos de los vuelos   */}
             {" Pais de origen: "}{vuelo.Pais_Origen}<br/>{" Pais de Destino: "}{vuelo.Pais_Destino}<br/>{"Fecha: "}{(new Date(vuelo.fecha)).toLocaleDateString()}<br/>{"Hora de salida: "}{vuelo.HoraSalida}
             <br/>
-            <Link to={`/boletos/${vuelo.idVuelo}`}>
+             <Link to={`/boletos/${vuelo.idVuelo}`}>  {/* Se redirecciona a la pagina boletos con id del vuelo elegido */}
               <button>Seleccionar</button>
             </Link>
             <hr/>

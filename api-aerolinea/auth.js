@@ -6,23 +6,26 @@ import jwt from "jsonwebtoken";
 import { body, validationResult } from "express-validator";
 import { db } from "./db.js";
 
+//AUTENTICACION
+
 // Configuración de Passport
-export function authConfig() {
-  const jwtOptions = {
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: process.env.JWT_SECRET,
+export function authConfig() {    
+  const jwtOptions = {    //Guardamos el token
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), //Se extrae el token, que esta en el encabezado  
+    secretOrKey: process.env.JWT_SECRET,  //Especifica la clave secreta que utilizaremos 
   };
+  //La clave secreta se utiliza para verificar y firmar el token
 
   passport.use(
     new Strategy(jwtOptions, async (payload, next) => {
       const [rows, fields] = await db.execute(
-        "SELECT idEmpleado, usuario FROM empleados WHERE usuario = ?",
-        [payload.usuario]
+        "SELECT idEmpleado, usuario FROM empleados WHERE usuario = ?",  //Se pregunta si el usuario coincide con el token
+        [payload.usuario] //Payload es el contenido del token(en este caso el usuario)
       );
       if (rows.length > 0) {
-        next(null, rows[0]);
+        next(null, rows[0]);  //Es valido
       } else {
-        next(null, false);
+        next(null, false);    //Es invalido
       }
     })
   );
@@ -32,11 +35,14 @@ export function authConfig() {
 export const authRouter = express
   .Router()
 
+    //VERIFICACION
+
+
   // Endpoint de inicio de sesión
-  .post(
+  .post(  //Se verifican los datos ingresados
     "/login",
     body("usuario").isAlphanumeric().isLength({ min: 1, max: 25 }),
-    body("password").isStrongPassword({
+    body("password").isStrongPassword({ //Se definen las condiciones minimas de la contraseña
       minLength: 8,
       minLowercase: 1,
       minUppercase: 1,
@@ -58,32 +64,25 @@ export const authRouter = express
         [usuario]
       );
 
-      if (rows.length === 0) {
+      if (rows.length === 0) {  //Si no ingresa nada sera error
         res.status(400).send("Usuario o contraseña inválida");
         return;
       }
 
       // Verificar contraseña
-      const passwordCompared = await bcrypt.compare(password, rows[0].password);
+      const passwordCompared = await bcrypt.compare(password, rows[0].password);  //El bcrypt se utiliza para comparar la contraseña encriptada
       if (!passwordCompared) {
         res.status(400).send("Usuario o contraseña inválida");
         return;
       }
 
       // Generar token
-      const payload = { usuario };
-      const token = jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: "2h",
+      const payload = { usuario };  //Se guarda el token del usuario
+      const token = jwt.sign(payload, process.env.JWT_SECRET, { 
+        expiresIn: "2h",  //Si pasan 2 horas el token expira
       });
       res.send({ usuario, token });
     }
   )
 
-  // Endpoint para obtener el perfil del usuario autenticado
-  .get(
-    "/perfil",
-    passport.authenticate("jwt", { session: false }),
-    (req, res) => {
-      res.json(req.user);
-    }
-  );
+  

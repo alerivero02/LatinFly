@@ -5,7 +5,7 @@ import axios from "axios";
 export const BoletosPage = () => {
   const navigate = useNavigate();
   
-  const { idVuelo } = useParams();
+  const { idVuelo } = useParams();    //Sirve para traer parametros de la ruta, en este caso de idVuelo
   const [formData, setFormData] = useState({
     clase: "",
     asiento: "",
@@ -23,8 +23,8 @@ export const BoletosPage = () => {
   };
 
   const Precio = (e) => {
-    const selectedValue = e.target.value;
-    if (selectedValue === "100") {
+    const selectedValue = e.target.value; 
+    if (selectedValue === "100") {    //se guarda el valor en VALUE para mostrarlo luego
       setClaseSel("Economica");
     } else if (selectedValue === "300") {
       setClaseSel("Ejecutiva");
@@ -80,7 +80,7 @@ export const BoletosPage = () => {
           </select>
           <br />
           <p>Precio: ${valor} </p>
-          <button type="submit">Confirmar Boleto</button>
+          <button type="submit">Confirmar Boleto</button> {/*Submit sirve para enviar formularios */}
         </div>
       </form>
 

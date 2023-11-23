@@ -22,6 +22,7 @@ app.use(cors());
 
 authConfig();
 
+//Se denomina la ruta para usar en el Thunder
 app.use("/auth", authRouter);
 app.use("/paises", paisesRouter);
 app.use("/aviones",avionesRouter);
