@@ -19,7 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LayoutPage/>}>
           <Route index element={<LoginPage/>}/>
-          <Route path="/vuelos"element={<RequiredAuth><VuelosPage /></RequiredAuth>}/>
+          <Route path="/vuelos" element={<VuelosPage />}/>
           <Route path="/pasajeros/:idBoleto" element={<RequiredAuth><PasajerosPage/></RequiredAuth>}/>
           <Route path="/boletos/:idVuelo" element={<RequiredAuth><BoletosPage/></RequiredAuth>}/>
           <Route path="/pasaje/:idBoleto/:idPasajero" element={<PasajePage/>}/>
